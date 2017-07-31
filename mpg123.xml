@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="mpg123" basename="Mpg123Base" basetype="Mpg123Base" openname="mpg123.library">
+	<include>libraries/mpg123.h</include>
+	<interface name="main" version="1.0" struct="Mpg123IFace" prefix="_Mpg123_" asmprefix="IMpg123" global="IMpg123">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+		<method name="mpg123_new" result="mpg123_handle *">
+			<arg name="decoder" type="const char *"/>
+			<arg name="error" type="int *"/>
+		</method>
+		<method name="mpg123_delete" result="void">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_param" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="type" type="enum mpg123_parms"/>
+			<arg name="value" type="long"/>
+			<arg name="fvalue" type="double"/>
+		</method>
+		<method name="mpg123_getparam" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="type" type="enum mpg123_parms"/>
+			<arg name="val" type="long *"/>
+			<arg name="fval" type="double *"/>
+		</method>
+		<method name="mpg123_feature" result="int">
+			<arg name="key" type="enum mpg123_feature_set"/>
+		</method>
+		<method name="mpg123_plain_strerror" result="const char *">
+			<arg name="errcode" type="int"/>
+		</method>
+		<method name="mpg123_strerror" result="const char *">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_errcode" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_decoders" result="const char **"/>
+		<method name="mpg123_supported_decoders" result="const char **"/>
+		<method name="mpg123_decoder" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="decoder_name" type="const char *"/>
+		</method>
+		<method name="mpg123_current_decoder" result="const char *">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_rates" result="void">
+			<arg name="list" type="const long **"/>
+			<arg name="number" type="size_t *"/>
+		</method>
+		<method name="mpg123_encodings" result="void">
+			<arg name="list" type="const int **"/>
+			<arg name="number" type="size_t *"/>
+		</method>
+		<method name="mpg123_encsize" result="int">
+			<arg name="encoding" type="int"/>
+		</method>
+		<method name="mpg123_format_none" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_format_all" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_format" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="rate" type="long"/>
+			<arg name="channels" type="int"/>
+			<arg name="encodings" type="int"/>
+		</method>
+		<method name="mpg123_format_support" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="rate" type="long"/>
+			<arg name="encoding" type="int"/>
+		</method>
+		<method name="mpg123_getformat" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="rate" type="long *"/>
+			<arg name="channels" type="int *"/>
+			<arg name="encoding" type="int *"/>
+		</method>
+		<method name="mpg123_open" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="path" type="const char *"/>
+		</method>
+		<method name="mpg123_open_fd" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="fd" type="int"/>
+		</method>
+		<method name="mpg123_open_handle" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="iohandle" type="APTR"/>
+		</method>
+		<method name="mpg123_open_feed" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_close" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_read" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="outmemory" type="unsigned char *"/>
+			<arg name="outmemsize" type="size_t"/>
+			<arg name="done" type="size_t *"/>
+		</method>
+		<method name="mpg123_feed" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="in" type="const unsigned char *"/>
+			<arg name="size" type="size_t"/>
+		</method>
+		<method name="mpg123_decode" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="inmemory" type="const unsigned char *"/>
+			<arg name="inmemsize" type="size_t"/>
+			<arg name="outmemory" type="unsigned char *"/>
+			<arg name="outmemsize" type="size_t"/>
+			<arg name="done" type="size_t *"/>
+		</method>
+		<method name="mpg123_decode_frame" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="num" type="off_t *"/>
+			<arg name="audio" type="unsigned char **"/>
+			<arg name="bytes" type="size_t *"/>
+		</method>
+		<method name="mpg123_framebyframe_decode" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="num" type="off_t *"/>
+			<arg name="audio" type="unsigned char **"/>
+			<arg name="bytes" type="size_t *"/>
+		</method>
+		<method name="mpg123_framebyframe_next" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_tell" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_tellframe" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_tell_stream" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_seek" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="sampleoff" type="off_t"/>
+			<arg name="whence" type="int"/>
+		</method>
+		<method name="mpg123_feedseek" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="sampleoff" type="off_t"/>
+			<arg name="whence" type="int"/>
+			<arg name="input_offset" type="off_t *"/>
+		</method>
+		<method name="mpg123_seek_frame" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="frameoff" type="off_t"/>
+			<arg name="whence" type="int"/>
+		</method>
+		<method name="mpg123_timeframe" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="sec" type="double"/>
+		</method>
+		<method name="mpg123_index" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="offsets" type="off_t **"/>
+			<arg name="step" type="off_t *"/>
+			<arg name="fill" type="size_t *"/>
+		</method>
+		<method name="mpg123_set_index" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="offsets" type="off_t *"/>
+			<arg name="step" type="off_t"/>
+			<arg name="fill" type="size_t"/>
+		</method>
+		<method name="mpg123_eq" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="channel" type="enum mpg123_channels"/>
+			<arg name="band" type="int"/>
+			<arg name="val" type="double"/>
+		</method>
+		<method name="mpg123_geteq" result="double">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="channel" type="enum mpg123_channels"/>
+			<arg name="band" type="int"/>
+		</method>
+		<method name="mpg123_reset_eq" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_volume" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="vol" type="double"/>
+		</method>
+		<method name="mpg123_volume_change" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="change" type="double"/>
+		</method>
+		<method name="mpg123_getvolume" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="base" type="double *"/>
+			<arg name="really" type="double *"/>
+			<arg name="rva_db" type="double *"/>
+		</method>
+		<method name="mpg123_info" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="mi" type="struct mpg123_frameinfo *"/>
+		</method>
+		<method name="mpg123_safe_buffer" result="size_t"/>
+		<method name="mpg123_scan" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_length" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_set_filesize" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="size" type="off_t"/>
+		</method>
+		<method name="mpg123_tpf" result="double">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_clip" result="long">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_getstate" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="key" type="enum mpg123_state"/>
+			<arg name="val" type="long *"/>
+			<arg name="fval" type="double *"/>
+		</method>
+		<method name="mpg123_init_string" result="void">
+			<arg name="sb" type="mpg123_string *"/>
+		</method>
+		<method name="mpg123_free_string" result="void">
+			<arg name="sb" type="mpg123_string *"/>
+		</method>
+		<method name="mpg123_resize_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="news" type="size_t"/>
+		</method>
+		<method name="mpg123_grow_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="news" type="size_t"/>
+		</method>
+		<method name="mpg123_copy_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="to" type="mpg123_string *"/>
+		</method>
+		<method name="mpg123_add_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="stuff" type="const char *"/>
+		</method>
+		<method name="mpg123_add_substring" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="stuff" type="const char *"/>
+			<arg name="from" type="size_t"/>
+			<arg name="count" type="size_t"/>
+		</method>
+		<method name="mpg123_set_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="stuff" type="const char *"/>
+		</method>
+		<method name="mpg123_set_substring" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="stuff" type="const char *"/>
+			<arg name="from" type="size_t"/>
+			<arg name="count" type="size_t"/>
+		</method>
+		<method name="mpg123_strlen" result="size_t">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="utf8" type="int"/>
+		</method>
+		<method name="mpg123_enc_from_id3" result="enum mpg123_text_encoding">
+			<arg name="id3_enc_byte" type="unsigned char"/>
+		</method>
+		<method name="mpg123_store_utf8" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+			<arg name="enc" type="enum mpg123_text_encoding"/>
+			<arg name="source" type="const unsigned char *"/>
+			<arg name="source_size" type="size_t"/>
+		</method>
+		<method name="mpg123_meta_check" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_id3" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="v1" type="mpg123_id3v1 **"/>
+			<arg name="v2" type="mpg123_id3v2 **"/>
+		</method>
+		<method name="mpg123_icy" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="icy_meta" type="char **"/>
+		</method>
+		<method name="mpg123_icy2utf8" result="char *">
+			<arg name="icy_text" type="const char *"/>
+		</method>
+		<method name="mpg123_parnew" result="mpg123_handle *">
+			<arg name="mp" type="mpg123_pars *"/>
+			<arg name="decoder" type="const char *"/>
+			<arg name="error" type="int *"/>
+		</method>
+		<method name="mpg123_new_pars" result="mpg123_pars *">
+			<arg name="error" type="int *"/>
+		</method>
+		<method name="mpg123_delete_pars" result="void">
+			<arg name="mp" type="mpg123_pars *"/>
+		</method>
+		<method name="mpg123_fmt_none" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+		</method>
+		<method name="mpg123_fmt_all" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+		</method>
+		<method name="mpg123_fmt" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+			<arg name="rate" type="long"/>
+			<arg name="channels" type="int"/>
+			<arg name="encodings" type="int"/>
+		</method>
+		<method name="mpg123_fmt_support" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+			<arg name="rate" type="long"/>
+			<arg name="encoding" type="int"/>
+		</method>
+		<method name="mpg123_par" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+			<arg name="type" type="enum mpg123_parms"/>
+			<arg name="value" type="long"/>
+			<arg name="fvalue" type="double"/>
+		</method>
+		<method name="mpg123_getpar" result="int">
+			<arg name="mp" type="mpg123_pars *"/>
+			<arg name="type" type="enum mpg123_parms"/>
+			<arg name="val" type="long *"/>
+			<arg name="fval" type="double *"/>
+		</method>
+		<method name="mpg123_replace_buffer" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="data" type="unsigned char *"/>
+			<arg name="size" type="size_t"/>
+		</method>
+		<method name="mpg123_outblock" result="size_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_replace_reader" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="r_read" type="mpg123_read_callback"/>
+			<arg name="r_lseek" type="mpg123_lseek_callback"/>
+		</method>
+		<method name="mpg123_replace_reader_handle" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="r_read" type="mpg123_read_handle_callback"/>
+			<arg name="r_lseek" type="mpg123_lseek_handle_callback"/>
+			<arg name="cleanup" type="mpg123_cleanup_callback"/>
+		</method>
+	</interface>
+</library>
