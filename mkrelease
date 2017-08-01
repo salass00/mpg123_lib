@@ -15,7 +15,7 @@ makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/inline
 makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/libraries
 
 copy clone Install ${destdir}/mpg123_lib-$numvers
-copy clone LICENSE ${destdir}/mpg123_lib-$numvers
+copy clone COPYING ${destdir}/mpg123_lib-$numvers
 copy clone releasenotes ${destdir}/mpg123_lib-$numvers
 copy clone mpg123.library ${destdir}/mpg123_lib-$numvers/Libs
 copy clone include/proto/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/proto
@@ -39,7 +39,7 @@ type README                                                >> ${destdir}/mpg123_
 copy clone ENV:Sys/def_drawer.info ${destdir}/mpg123_lib-$numvers.info
 copy clone ENV:Sys/def_install.info ${destdir}/mpg123_lib-$numvers/Install.info
 copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme.info
-copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/LICENSE.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/COPYING.info
 copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/releasenotes.info
 
 changetooltype ${destdir}/mpg123_lib-$numvers/Install.info ADD "APPNAME=mpg123.library"
