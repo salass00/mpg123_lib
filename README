@@ -1,0 +1,17 @@
+An AmigaOS shared library implementation of libmpg123. Currently based on the
+1.25.4 version.
+
+Installation:
+
+Copy Libs/mpg123.library LIBS:
+
+Source code:
+
+The source code for current and older versions is available on github:
+
+https://github.com/salass00/mpg123_lib
+
+Changes:
+
+For a list of changes in this and earlier versions see the releasenotes file.
+
