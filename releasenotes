@@ -1,0 +1,23 @@
+mpg123.library 52.1 (21.4.2011)
+
+- First released version.
+
+
+mpg123.library 52.2 (24.4.2011)
+
+ - Now redirects all stdout/stderr output from libmpg123 to NIL:.
+
+
+mpg123.library 52.3 (28.3.2014)
+
+- Recompiled with libmpg123 1.19.0.
+
+
+mpg123.library 53.1 (xx.xx.2017)
+
+- Most of the library interface code has been rewritten and the used libmpg123
+  version is now 1.25.4. The library API is unchanged though.
+
+- Libmpg123 is messages disabled so hopefully something like NIL: redirect
+  hack introduced in V52.2 won't be necessary.
+
