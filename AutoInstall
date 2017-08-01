@@ -1,0 +1,4 @@
+; AutoInstall script for AmiUpdate
+
+CopyStore mpg123_lib-xx.xx/Libs/mpg123.library LIBS:
+
