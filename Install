@@ -1,0 +1,9 @@
+(welcome)
+(set @default-dest "LIBS:")
+(copylib
+	(prompt "Copying mpg123.library")
+	(help @copylib-help)
+	(source "mpg123.library")
+	(dest @default-dest)
+)
+(exit)
