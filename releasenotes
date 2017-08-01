@@ -21,3 +21,5 @@ mpg123.library 53.1 (xx.xx.2017)
 - Libmpg123 is messages disabled so hopefully something like NIL: redirect
   hack introduced in V52.2 won't be necessary.
 
+- Added an altivec version of the library.
+

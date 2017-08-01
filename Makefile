@@ -17,7 +17,7 @@ endif
 
 CFLAGS  := -O2 -g -Wall -Wwrite-strings -Werror -I./include -I./mpg123-build/src/libmpg123 -I./$(MPG123DIR)/src/libmpg123
 LDFLAGS := -static
-LIBS    := mpg123-build/src/libmpg123/.libs/libmpg123.a
+LIBS    := 
 
 SRCS := init.c
 
@@ -56,12 +56,12 @@ main_SRCS := main/Obtain.c main/Release.c main/mpg123_new.c main/mpg123_delete.c
 OBJS := $(SRCS:.c=.o) $(main_SRCS:.c=.o)
 
 .PHONY: all
-all: $(TARGET)
+all: $(TARGET) $(TARGET).altivec
 
 mpg123-build/Makefile: $(MPG123DIR)/configure
 	mkdir -p mpg123-build
 	rm -rf mpg123-build/*
-	cd mpg123-build && ../$(MPG123DIR)/configure --prefix=/SDK/local/newlib $(HOSTARG) --disable-shared --disable-messages --with-cpu=generic_fpu --with-optimization=4
+	cd mpg123-build && ../$(MPG123DIR)/configure --prefix=/SDK/local/newlib $(HOSTARG) --disable-shared --disable-messages --with-cpu=generic_fpu
 	sed -i 's/#define HAVE_TERMIOS 1/\/* #undef HAVE_TERMIOS *\//' mpg123-build/src/config.h
 
 .PHONY: build-mpg123
@@ -69,13 +69,28 @@ build-mpg123: mpg123-build/Makefile
 	$(MAKE) -C mpg123-build
 
 $(TARGET): build-mpg123 $(OBJS)
-	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $(OBJS) $(LIBS)
+	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $(OBJS) mpg123-build/src/libmpg123/.libs/libmpg123.a $(LIBS)
+	$(STRIP) -R.comment -o $@ $@.debug
+
+mpg123-build-altivec/Makefile: $(MPG123DIR)/configure
+	mkdir -p mpg123-build-altivec
+	rm -rf mpg123-build-altivec/*
+	cd mpg123-build-altivec && ../$(MPG123DIR)/configure --prefix=/SDK/local/newlib $(HOSTARG) --disable-shared --disable-messages --with-cpu=altivec
+	sed -i 's/#define HAVE_TERMIOS 1/\/* #undef HAVE_TERMIOS *\//' mpg123-build-altivec/src/config.h
+
+.PHONY: build-mpg123-altivec
+build-mpg123-altivec: mpg123-build-altivec/Makefile
+	$(MAKE) -C mpg123-build-altivec
+
+$(TARGET).altivec: build-mpg123-altivec $(OBJS)
+	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $(OBJS) mpg123-build-altivec/src/libmpg123/.libs/libmpg123.a $(LIBS)
 	$(STRIP) -R.comment -o $@ $@.debug
 
 .PHONY: clean
 clean:
 	rm -f *.o main/*.o
 	rm -rf mpg123-build
+	rm -rf mpg123-build-altivec
 
 .PHONY: revision
 revision:
