@@ -1,0 +1,53 @@
+; Script for generating a release archive
+
+make all
+
+set mpg123dir mpg123-1.25.4
+set destdir RAM:mkrelease
+set fullvers `version file mpg123.library`
+set numvers `cut "$fullvers" word 2`
+
+delete all force ${destdir}
+makedir all force ${destdir}/mpg123_lib-$numvers/Libs
+makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/proto
+makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/interfaces
+makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/inline4
+makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/libraries
+
+copy clone Install ${destdir}/mpg123_lib-$numvers
+copy clone LICENSE ${destdir}/mpg123_lib-$numvers
+copy clone releasenotes ${destdir}/mpg123_lib-$numvers
+copy clone mpg123.library ${destdir}/mpg123_lib-$numvers/Libs
+copy clone include/proto/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/proto
+copy clone include/interfaces/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/interfaces
+copy clone include/inline4/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/inline4
+copy clone include/libraries/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/libraries
+copy clone mpg123-build/src/libmpg123/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
+copy clone ${mpg123dir}/src/libmpg123/fmt123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
+
+sed "s/mpg123_lib-xx.xx/mpg123_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
+
+echo "Short:        Library for decoding mpeg audio files"  > ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo "Author:       Fredrik Wikstrom"                      >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo "Uploader:     Fredrik Wikstrom <fredrik@a500.org>"   >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo "Type:         util/libs"                             >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo "Version:      $numvers"                              >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo "Architecture: ppc-amigaos"                           >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+echo ""                                                    >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+type README                                                >> ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme
+
+copy clone ENV:Sys/def_drawer.info ${destdir}/mpg123_lib-$numvers.info
+copy clone ENV:Sys/def_install.info ${destdir}/mpg123_lib-$numvers/Install.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/LICENSE.info
+copy clone ENV:Sys/def_ascii.info ${destdir}/mpg123_lib-$numvers/releasenotes.info
+
+changetooltype ${destdir}/mpg123_lib-$numvers/Install.info ADD "APPNAME=mpg123.library"
+
+delete force RAM:mpg123_lib.lha
+lha a -x -r RAM:mpg123_lib.lha ${destdir}/
+
+echo "RAM:mpg123_lib.lha created"
+
+copy clone ${destdir}/mpg123_lib-$numvers/mpg123_lib.readme RAM:
+
