@@ -1,9 +1,18 @@
 An AmigaOS shared library implementation of libmpg123. Currently based on the
 1.25.4 version.
 
+The altivec version of the library is untested as I do not have a machine with
+an altivec unit.
+
 Installation:
 
+For generic FPU version:
+
 Copy Libs/mpg123.library LIBS:
+
+For altivec version
+
+Copy Libs/mpg123.library.altivec LIBS:mpg123.library
 
 Source code:
 
