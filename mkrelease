@@ -18,6 +18,7 @@ copy clone Install ${destdir}/mpg123_lib-$numvers
 copy clone COPYING ${destdir}/mpg123_lib-$numvers
 copy clone releasenotes ${destdir}/mpg123_lib-$numvers
 copy clone mpg123.library ${destdir}/mpg123_lib-$numvers/Libs
+copy clone mpg123.library.altivec ${destdir}/mpg123_lib-$numvers/Libs
 copy clone include/proto/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/proto
 copy clone include/interfaces/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/interfaces
 copy clone include/inline4/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/inline4
