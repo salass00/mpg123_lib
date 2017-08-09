@@ -19,10 +19,10 @@ copy clone COPYING ${destdir}/mpg123_lib-$numvers
 copy clone releasenotes ${destdir}/mpg123_lib-$numvers
 copy clone mpg123.library ${destdir}/mpg123_lib-$numvers/Libs
 copy clone mpg123.library.altivec ${destdir}/mpg123_lib-$numvers/Libs
-copy clone include/proto/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/proto
-copy clone include/interfaces/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/interfaces
-copy clone include/inline4/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/inline4
-copy clone include/libraries/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/common/include/libraries
+copy clone include/proto/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/proto
+copy clone include/interfaces/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/interfaces
+copy clone include/inline4/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/inline4
+copy clone include/libraries/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/libraries
 copy clone mpg123-build/src/libmpg123/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
 copy clone ${mpg123dir}/src/libmpg123/fmt123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
 
