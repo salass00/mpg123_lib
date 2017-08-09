@@ -1,9 +1,23 @@
 (welcome)
 (set @default-dest "LIBS:")
-(copylib
-	(prompt "Copying mpg123.library")
-	(help @copylib-help)
-	(source "mpg123.library")
-	(dest @default-dest)
+(set install_which (askchoice
+	(prompt "Which version to install?")
+	(help @askchoice-help)
+	(choices "Generic FPU" "Altivec")
+))
+(if (= install_which 1)
+	(copylib
+		(prompt "Copying mpg123.library")
+		(help @copylib-help)
+		(source "mpg123.library")
+		(dest @default-dest)
+	)
+	(copylib
+		(prompt "Copying mpg123.library")
+		(help @copylib-help)
+		(source "mpg123.library.altivec")
+		(dest @default-dest)
+		(newname "mpg123.library")
+	)
 )
 (exit)
