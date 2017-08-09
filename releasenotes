@@ -13,7 +13,7 @@ mpg123.library 52.3 (28.3.2014)
 - Recompiled with libmpg123 1.19.0.
 
 
-mpg123.library 53.1 (xx.xx.2017)
+mpg123.library 53.1 (9.8.2017)
 
 - Most of the library interface code has been rewritten and the used libmpg123
   version is now 1.25.4. The library API is unchanged though.
