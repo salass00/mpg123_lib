@@ -56,7 +56,7 @@ main_SRCS := main/Obtain.c main/Release.c main/mpg123_new.c main/mpg123_delete.c
 OBJS := $(SRCS:.c=.o) $(main_SRCS:.c=.o)
 
 .PHONY: all
-all: $(TARGET) $(TARGET).altivec
+all: $(TARGET) $(TARGET).altivec havealtivec
 
 mpg123-build/Makefile: $(MPG123DIR)/configure
 	mkdir -p mpg123-build
@@ -85,6 +85,9 @@ build-mpg123-altivec: mpg123-build-altivec/Makefile
 $(TARGET).altivec: build-mpg123-altivec $(OBJS)
 	$(CC) $(LDFLAGS) -nostartfiles -o $@.debug $(OBJS) mpg123-build-altivec/src/libmpg123/.libs/libmpg123.a $(LIBS)
 	$(STRIP) -R.comment -o $@ $@.debug
+
+havealtivec: havealtivec.c
+	$(CC) -nostartfiles -o $@ $^
 
 .PHONY: clean
 clean:
