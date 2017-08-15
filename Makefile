@@ -3,8 +3,10 @@ VERSION := 53
 
 MPG123DIR := mpg123-1.25.4
 
-CC    := ppc-amigaos-gcc
-STRIP := ppc-amigaos-strip
+CC     := ppc-amigaos-gcc
+STRIP  := ppc-amigaos-strip
+AR     := ppc-amigaos-ar
+RANLIB := ppc-amigaos-ranlib
 
 BUILDSYS := $(shell uname -s)
 
@@ -55,8 +57,11 @@ main_SRCS := main/Obtain.c main/Release.c main/mpg123_new.c main/mpg123_delete.c
 
 OBJS := $(SRCS:.c=.o) $(main_SRCS:.c=.o)
 
+STATIC_SRCS := static/autoinit_mpg123_base.c static/autoinit_mpg123_main.c static/stubs.c
+STATIC_OBJS := $(STATIC_SRCS:.c=.o)
+
 .PHONY: all
-all: $(TARGET) $(TARGET).altivec havealtivec
+all: $(TARGET) $(TARGET).altivec havealtivec libmpg123.a
 
 mpg123-build/Makefile: $(MPG123DIR)/configure
 	mkdir -p mpg123-build
@@ -88,6 +93,10 @@ $(TARGET).altivec: build-mpg123-altivec $(OBJS)
 
 havealtivec: havealtivec.c
 	$(CC) -nostartfiles -o $@ $^
+
+libmpg123.a: $(STATIC_OBJS)
+	$(AR) -crv $@ $^
+	$(RANLIB) $@
 
 .PHONY: clean
 clean:

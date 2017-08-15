@@ -13,6 +13,7 @@ makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/proto
 makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/interfaces
 makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/inline4
 makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/libraries
+makedir all force ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/lib/pkgconfig
 
 copy clone Install ${destdir}/mpg123_lib-$numvers
 copy clone COPYING ${destdir}/mpg123_lib-$numvers
@@ -25,6 +26,9 @@ copy clone include/inline4/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/new
 copy clone include/libraries/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include/libraries
 copy clone mpg123-build/src/libmpg123/mpg123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
 copy clone ${mpg123dir}/src/libmpg123/fmt123.h ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/include
+copy clone libmpg123.a ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/lib
+copy clone mpg123-build/src/libmpg123/libmpg123.la ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/lib
+copy clone mpg123-build/libmpg123.pc ${destdir}/mpg123_lib-$numvers/SDK/local/newlib/lib/pkgconfig
 
 sed "s/mpg123_lib-xx.xx/mpg123_lib-$numvers/g" AutoInstall > ${destdir}/AutoInstall
 
