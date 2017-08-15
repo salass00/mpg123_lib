@@ -102,3 +102,11 @@ extern int                  VARARGS68K _Mpg123_mpg123_replace_buffer(struct Mpg1
 extern size_t               VARARGS68K _Mpg123_mpg123_outblock(struct Mpg123IFace *, mpg123_handle * mh);
 extern int                  VARARGS68K _Mpg123_mpg123_replace_reader(struct Mpg123IFace *, mpg123_handle * mh, mpg123_read_callback r_read, mpg123_lseek_callback r_lseek);
 extern int                  VARARGS68K _Mpg123_mpg123_replace_reader_handle(struct Mpg123IFace *, mpg123_handle * mh, mpg123_read_handle_callback r_read, mpg123_lseek_handle_callback r_lseek, mpg123_cleanup_callback cleanup);
+extern int                  VARARGS68K _Mpg123_mpg123_getformat2(struct Mpg123IFace *, mpg123_handle * mh, long * rate, int * channels, int * encoding, int clear_flag);
+extern int                  VARARGS68K _Mpg123_mpg123_framedata(struct Mpg123IFace *, mpg123_handle * mh, unsigned long * header, unsigned char ** bodydata, size_t * bodybytes);
+extern off_t                VARARGS68K _Mpg123_mpg123_framepos(struct Mpg123IFace *, mpg123_handle * mh);
+extern int                  VARARGS68K _Mpg123_mpg123_position(struct Mpg123IFace *, mpg123_handle * mh, off_t frame_offset, off_t buffered_bytes, off_t * current_frame, off_t * frames_left, double * current_seconds, double * seconds_left);
+extern off_t                VARARGS68K _Mpg123_mpg123_framelength(struct Mpg123IFace *, mpg123_handle * mh);
+extern int                  VARARGS68K _Mpg123_mpg123_spf(struct Mpg123IFace *, mpg123_handle * mh);
+extern int                  VARARGS68K _Mpg123_mpg123_chomp_string(struct Mpg123IFace *, mpg123_string * sb);
+extern void                 VARARGS68K _Mpg123_mpg123_meta_free(struct Mpg123IFace *, mpg123_handle * mh);

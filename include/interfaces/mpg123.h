@@ -118,6 +118,14 @@ struct Mpg123IFace
 	size_t APICALL (*mpg123_outblock)(struct Mpg123IFace *Self, mpg123_handle * mh);
 	int APICALL (*mpg123_replace_reader)(struct Mpg123IFace *Self, mpg123_handle * mh, mpg123_read_callback r_read, mpg123_lseek_callback r_lseek);
 	int APICALL (*mpg123_replace_reader_handle)(struct Mpg123IFace *Self, mpg123_handle * mh, mpg123_read_handle_callback r_read, mpg123_lseek_handle_callback r_lseek, mpg123_cleanup_callback cleanup);
+	int APICALL (*mpg123_getformat2)(struct Mpg123IFace *Self, mpg123_handle * mh, long * rate, int * channels, int * encoding, int clear_flag);
+	int APICALL (*mpg123_framedata)(struct Mpg123IFace *Self, mpg123_handle * mh, unsigned long * header, unsigned char ** bodydata, size_t * bodybytes);
+	off_t APICALL (*mpg123_framepos)(struct Mpg123IFace *Self, mpg123_handle * mh);
+	int APICALL (*mpg123_position)(struct Mpg123IFace *Self, mpg123_handle * mh, off_t frame_offset, off_t buffered_bytes, off_t * current_frame, off_t * frames_left, double * current_seconds, double * seconds_left);
+	off_t APICALL (*mpg123_framelength)(struct Mpg123IFace *Self, mpg123_handle * mh);
+	int APICALL (*mpg123_spf)(struct Mpg123IFace *Self, mpg123_handle * mh);
+	int APICALL (*mpg123_chomp_string)(struct Mpg123IFace *Self, mpg123_string * sb);
+	void APICALL (*mpg123_meta_free)(struct Mpg123IFace *Self, mpg123_handle * mh);
 };
 
 #ifdef __cplusplus

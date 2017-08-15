@@ -354,5 +354,42 @@
 			<arg name="r_lseek" type="mpg123_lseek_handle_callback"/>
 			<arg name="cleanup" type="mpg123_cleanup_callback"/>
 		</method>
+		<method name="mpg123_getformat2" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="rate" type="long *"/>
+			<arg name="channels" type="int *"/>
+			<arg name="encoding" type="int *"/>
+			<arg name="clear_flag" type="int"/>
+		</method>
+		<method name="mpg123_framedata" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="header" type="unsigned long *"/>
+			<arg name="bodydata" type="unsigned char **"/>
+			<arg name="bodybytes" type="size_t *"/>
+		</method>
+		<method name="mpg123_framepos" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_position" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+			<arg name="frame_offset" type="off_t"/>
+			<arg name="buffered_bytes" type="off_t"/>
+			<arg name="current_frame" type="off_t *"/>
+			<arg name="frames_left" type="off_t *"/>
+			<arg name="current_seconds" type="double *"/>
+			<arg name="seconds_left" type="double *"/>
+		</method>
+		<method name="mpg123_framelength" result="off_t">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_spf" result="int">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
+		<method name="mpg123_chomp_string" result="int">
+			<arg name="sb" type="mpg123_string *"/>
+		</method>
+		<method name="mpg123_meta_free" result="void">
+			<arg name="mh" type="mpg123_handle *"/>
+		</method>
 	</interface>
 </library>

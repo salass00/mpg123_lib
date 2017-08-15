@@ -23,3 +23,10 @@ mpg123.library 53.1 (9.8.2017)
 
 - Added an altivec version of the library.
 
+
+mpg123.library 53.2 (15.8.2017)
+
+- Added mpg123_getformat2(), mpg123_framedata(), mpg123_framepos(),
+  mpg123_position(), mpg123_framelength(), mpg123_spf(), mpg123_chomp_string()
+  and mpg123_meta_free() functions.
+

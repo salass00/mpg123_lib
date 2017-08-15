@@ -96,5 +96,13 @@ STATIC CONST APTR main_v1_vectors[] =
     _Mpg123_mpg123_outblock,
     _Mpg123_mpg123_replace_reader,
     _Mpg123_mpg123_replace_reader_handle,
+    _Mpg123_mpg123_getformat2,
+    _Mpg123_mpg123_framedata,
+    _Mpg123_mpg123_framepos,
+    _Mpg123_mpg123_position,
+    _Mpg123_mpg123_framelength,
+    _Mpg123_mpg123_spf,
+    _Mpg123_mpg123_chomp_string,
+    _Mpg123_mpg123_meta_free,
     (APTR)-1
 };

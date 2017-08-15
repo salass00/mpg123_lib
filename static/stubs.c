@@ -89,9 +89,10 @@ int mpg123_getformat(mpg123_handle *mh, long *rate, int *channels, int *encoding
 	return IMpg123->mpg123_getformat(mh, rate, channels, encoding);
 }
 
-/* int mpg123_getformat2(mpg123_handle *mh, long *rate, int *channels, int *encoding, int clear_flag) {
+/* V53.2 */
+int mpg123_getformat2(mpg123_handle *mh, long *rate, int *channels, int *encoding, int clear_flag) {
 	return IMpg123->mpg123_getformat2(mh, rate, channels, encoding, clear_flag);
-} */
+}
 
 int mpg123_open(mpg123_handle *mh, const char *path) {
 	return IMpg123->mpg123_open(mh, path);
@@ -139,13 +140,15 @@ int mpg123_framebyframe_next(mpg123_handle *mh) {
 	return IMpg123->mpg123_framebyframe_next(mh);
 }
 
-/* int mpg123_framedata(mpg123_handle *mh, unsigned long *header, unsigned char **bodydata, size_t *bodybytes) {
+/* V53.2 */
+int mpg123_framedata(mpg123_handle *mh, unsigned long *header, unsigned char **bodydata, size_t *bodybytes) {
 	return IMpg123->mpg123_framedata(mh, header, bodydata, bodybytes);
-} */
+}
 
-/* off_t mpg123_framepos(mpg123_handle *mh) {
+/* V53.2 */
+off_t mpg123_framepos(mpg123_handle *mh) {
 	return IMpg123->mpg123_framepos(mh);
-} */
+}
 
 off_t mpg123_tell(mpg123_handle *mh) {
 	return IMpg123->mpg123_tell(mh);
@@ -183,11 +186,12 @@ int mpg123_set_index(mpg123_handle *mh, off_t *offsets, off_t step, size_t fill)
 	return IMpg123->mpg123_set_index(mh, offsets, step, fill);
 }
 
-/* int mpg123_position(mpg123_handle *mh, off_t frame_offset, off_t buffered_bytes, off_t *current_frame,
+/* V53.2 */
+int mpg123_position(mpg123_handle *mh, off_t frame_offset, off_t buffered_bytes, off_t *current_frame,
                     off_t *frames_left, double *current_seconds, double *seconds_left)
 {
 	return IMpg123->mpg123_position(mh, frame_offset, buffered_bytes, current_frame, frames_left, current_seconds, seconds_left);
-} */
+}
 
 int mpg123_eq(mpg123_handle *mh, enum mpg123_channels channel, int band, double val) {
 	return IMpg123->mpg123_eq(mh, channel, band, val);
@@ -225,9 +229,10 @@ int mpg123_scan(mpg123_handle *mh) {
 	return IMpg123->mpg123_scan(mh);
 }
 
-/* off_t mpg123_framelength(mpg123_handle *mh) {
+/* V53.2 */
+off_t mpg123_framelength(mpg123_handle *mh) {
 	return IMpg123->mpg123_framelength(mh);
-} */
+}
 
 off_t mpg123_length(mpg123_handle *mh) {
 	return IMpg123->mpg123_length(mh);
@@ -241,9 +246,10 @@ double mpg123_tpf(mpg123_handle *mh) {
 	return IMpg123->mpg123_tpf(mh);
 }
 
-/* int mpg123_spf(mpg123_handle *mh) {
+/* V53.2 */
+int mpg123_spf(mpg123_handle *mh) {
 	return IMpg123->mpg123_spf(mh);
-} */
+}
 
 long mpg123_clip(mpg123_handle *mh) {
 	return IMpg123->mpg123_clip(mh);
@@ -277,7 +283,7 @@ int mpg123_add_string(mpg123_string* sb, const char* stuff) {
 	return IMpg123->mpg123_add_string(sb, stuff);
 }
 
-int mpg123_add_substring(mpg123_string *sb,	const char *stuff, size_t from, size_t count) {
+int mpg123_add_substring(mpg123_string *sb, const char *stuff, size_t from, size_t count) {
 	return IMpg123->mpg123_add_substring(sb, stuff, from, count);
 }
 
@@ -293,9 +299,10 @@ size_t mpg123_strlen(mpg123_string *sb, int utf8) {
 	return IMpg123->mpg123_strlen(sb, utf8);
 }
 
-/* int mpg123_chomp_string(mpg123_string *sb) {
+/* V53.2 */
+int mpg123_chomp_string(mpg123_string *sb) {
 	return IMpg123->mpg123_chomp_string(sb);
-} */
+}
 
 enum mpg123_text_encoding mpg123_enc_from_id3(unsigned char id3_enc_byte) {
 	return IMpg123->mpg123_enc_from_id3(id3_enc_byte);
@@ -309,9 +316,10 @@ int mpg123_meta_check(mpg123_handle *mh) {
 	return IMpg123->mpg123_meta_check(mh);
 }
 
-/* void mpg123_meta_free(mpg123_handle *mh) {
+/* V53.2 */
+void mpg123_meta_free(mpg123_handle *mh) {
 	return IMpg123->mpg123_meta_free(mh);
-} */
+}
 
 int mpg123_id3(mpg123_handle *mh, mpg123_id3v1 **v1, mpg123_id3v2 **v2) {
 	return IMpg123->mpg123_id3(mh, v1, v2);
@@ -345,7 +353,7 @@ int mpg123_fmt_all(mpg123_pars *mp) {
 	return IMpg123->mpg123_fmt_all(mp);
 }
 
-int mpg123_fmt(mpg123_pars *mp,	long rate, int channels, int encodings) {
+int mpg123_fmt(mpg123_pars *mp, long rate, int channels, int encodings) {
 	return IMpg123->mpg123_fmt(mp, rate, channels, encodings);
 }
 

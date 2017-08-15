@@ -109,5 +109,13 @@
 #define mpg123_outblock(mh) IMpg123->mpg123_outblock((mh))
 #define mpg123_replace_reader(mh, r_read, r_lseek) IMpg123->mpg123_replace_reader((mh), (r_read), (r_lseek))
 #define mpg123_replace_reader_handle(mh, r_read, r_lseek, cleanup) IMpg123->mpg123_replace_reader_handle((mh), (r_read), (r_lseek), (cleanup))
+#define mpg123_getformat2(mh, rate, channels, encoding, clear_flag) IMpg123->mpg123_getformat2((mh), (rate), (channels), (encoding), (clear_flag))
+#define mpg123_framedata(mh, header, bodydata, bodybytes) IMpg123->mpg123_framedata((mh), (header), (bodydata), (bodybytes))
+#define mpg123_framepos(mh) IMpg123->mpg123_framepos((mh))
+#define mpg123_position(mh, frame_offset, buffered_bytes, current_frame, frames_left, current_seconds, seconds_left) IMpg123->mpg123_position((mh), (frame_offset), (buffered_bytes), (current_frame), (frames_left), (current_seconds), (seconds_left))
+#define mpg123_framelength(mh) IMpg123->mpg123_framelength((mh))
+#define mpg123_spf(mh) IMpg123->mpg123_spf((mh))
+#define mpg123_chomp_string(sb) IMpg123->mpg123_chomp_string((sb))
+#define mpg123_meta_free(mh) IMpg123->mpg123_meta_free((mh))
 
 #endif /* INLINE4_MPG123_H */
